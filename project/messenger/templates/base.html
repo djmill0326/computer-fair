@@ -1,0 +1,32 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    {% if title %}
+    <title>{{title}} - Messenger</title>
+    {% else %}
+    <title>Computer Fair</title>
+    {% endif %}
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    {% if header %}
+        <div id=header>
+        <div id= headerrow>
+            <div class=headeritem>{{title}} - Messenger</div>
+                <a class="headeritem" id="logout", href="{{url_for('logout')}}">Logout</a>
+                <a class="headeritem" id="username", href="http://google.com">{{ user.name }}</a>
+            </div>
+        </div>
+    {% endif %}
+    {% with messages = get_flashed_messages() %} {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+            <br>
+        {% endfor %}
+    {% endif %} {% endwith %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
